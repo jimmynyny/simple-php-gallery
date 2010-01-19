@@ -1,0 +1,11 @@
+Requires:
+PHP
+GD
+Write access to site folder from PHP
+
+Setup:
+1) Put this all in the root of your site
+
+2) Drop images into the images folder
+
+3) Load up the site. Ta-da - a quick, simple gallery with lightbox and left/right controls.
