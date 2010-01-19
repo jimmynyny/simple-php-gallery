@@ -15,3 +15,13 @@ Setup:
 5) 'chmod -R 777 *' in the root of your new gallery site
 
 6) Load up the site. Ta-da - a quick, simple gallery with lightbox and left/right controls.
+
+Notes:
+Thumbs are created as-needed, and only once. So you can add images to the images/ folder and new thumbs will be created
+on the fly on next load of the page.
+
+When removing images thumbs are not removed automatically. So, to save disk space, make sure to remove the
+thumbs from the thumbs/ folder
+
+Shoutouts:
+Shoutouts to all the open source projects used here: PHP, jQuery, fancybox
