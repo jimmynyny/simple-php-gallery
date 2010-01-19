@@ -6,6 +6,12 @@ Write access to site folder from PHP
 Setup:
 1) Put this all in the root of your site
 
-2) Drop images into the images folder
+2) create an empty thumbs/ folder in your site root
 
-3) Load up the site. Ta-da - a quick, simple gallery with lightbox and left/right controls.
+3) create an empty images/ folder in your site root
+
+4) Drop images into the images/ folder
+
+5) 'chmod -R 777 *' in the root of your new gallery site
+
+6) Load up the site. Ta-da - a quick, simple gallery with lightbox and left/right controls.
