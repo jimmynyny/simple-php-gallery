@@ -10,7 +10,7 @@ Setup:
 
 3) create an empty images/ folder in your site root
 
-4) Drop images into the images/ folder
+4) Drop images into the images/ folder. create folders under this folder with images. go nuts.
 
 5) 'chmod -R 777 *' in the root of your new gallery site
 
@@ -18,7 +18,7 @@ Setup:
 
 Notes:
 Thumbs are created as-needed, and only once. So you can add images to the images/ folder and new thumbs will be created
-on the fly on next load of the page.
+on the fly on next load of the page - per folder.
 
 When removing images thumbs are not removed automatically. So, to save disk space, make sure to remove the
 thumbs from the thumbs/ folder
