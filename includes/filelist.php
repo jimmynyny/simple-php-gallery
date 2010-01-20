@@ -1,4 +1,9 @@
 <?php
+if($_GET["folder"] && substr($_GET["folder"],0,1) == ".")
+{
+	echo "no no no.";
+	return;
+}
 header ("content-type: text/xml");
 $dir = $_SERVER["DOCUMENT_ROOT"]."/images/".$_GET["folder"];
 $checkFileRegex = "/.+\.((jpg)|(gif)|(jpeg)|(png))/";
