@@ -1,6 +1,6 @@
 <?php 
 
-if($_GET["folder"] && substr($_GET["folder"],0,1) == ".")
+if($_GET["folder"] && (substr($_GET["folder"],0,1) == "." || preg_match("/.+\.\..+/", $_GET["folder"])))
 {
 	echo "no no no.";
 	return;
