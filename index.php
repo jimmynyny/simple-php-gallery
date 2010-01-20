@@ -1,3 +1,11 @@
+<?
+if($_GET["folder"] && substr($_GET["folder"],0,1) == ".")
+{
+	echo "no no no.";
+	return;
+}
+?>
+
 <? include 'includes/thumbnailgen.php'; ?>
 <html>
 <head>
