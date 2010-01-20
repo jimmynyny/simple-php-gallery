@@ -1,6 +1,6 @@
 <?php
 header ("content-type: text/xml");
-$dir = $_SERVER["DOCUMENT_ROOT"]."/images/";
+$dir = $_SERVER["DOCUMENT_ROOT"]."/images/".$_GET["folder"];
 $checkFileRegex = "/.+\.((jpg)|(gif)|(jpeg)|(png))/";
 $checkFileRegexThumb = "/tn_.+\.((jpg)|(gif)|(jpeg)|(png))/";
 
@@ -9,9 +9,16 @@ if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
 	echo utf8_encode("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<filelist>");
         while (($file = readdir($dh)) !== false) {
-		if (preg_match($checkFileRegex, $file) && !preg_match($checkFileRegexThumb, $file)) 
-            echo utf8_encode("<file>\n<filename>$file</filename>\n</file>\n");
-        }
+			if(filetype($dir.$file) == 'dir' && $file != "." && $file != "..")
+			{
+				echo utf8_encode("<dir><filename>$file</filename><filetype>".filetype($dir.$file)."</filetype></dir>");
+			}
+			else
+			{
+				if (preg_match($checkFileRegex, strtolower($file)) && !preg_match($checkFileRegexThumb, strtolower($file))) 
+		            echo utf8_encode("<file><filename>$file</filename><filetype>".filetype($dir.$file)."</filetype></file>");
+	        }
+		}
         closedir($dh);
     }
 	echo utf8_encode("</filelist>");
