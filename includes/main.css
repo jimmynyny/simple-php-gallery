@@ -1,0 +1,65 @@
+body {
+	font-size:62.5%;
+	word-wrap:break-word;
+	font-family: Helvetica, Arial, Sans-Serif; /* choose overall font - go to www.typetester.org to test sizes and see the list of safe fonts - If the user doesnt have the first one, it try the second, and goes along the list until it finds a font that the computer has installed */
+}
+div.gallery_folder { 
+	font-size:1.4em;
+	width:165px; 
+	height:155px; 
+	float:left; 
+	margin: 0 10px 30px 10px; 
+	text-align:center; 
+}
+div.gallery_image { 
+	font-size:1.4em;
+	width:165px; 
+	height:155px; 
+	float:left; 
+	margin: 0 10px 30px 10px; 
+	text-align:center; 
+}
+
+div#folderHeader
+{
+	font-size:1.6em;
+	padding:10px;
+	margin:10px 20px;
+	background-color:#EEE;
+}
+
+span#folderName
+{
+	font-weight:bold;
+}
+
+div.pagingControls
+{
+	font-size:1.2em;
+	padding:10px;
+	margin:10px 20px;
+	background-color:#EEE;
+	text-align:right;
+}
+div.pagingControls span.pagingControlsPerPage
+{
+	font-size:0.8em;
+}
+
+div.pagingControls a.pagingControlsNums
+{
+	text-decoration:none;
+	padding:3px 5px;
+}
+div.pagingControls a.pagingControlsNums.active
+{
+	font-weight:bold;
+	background-color:#BBB;
+}
+
+div#footer
+{
+	padding:10px;
+	margin:10px 20px;
+	font-size:1.0em;
+}
