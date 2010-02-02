@@ -23,5 +23,7 @@ on the fly on next load of the page - per folder.
 When removing images thumbs are not removed automatically. So, to save disk space, make sure to remove the
 thumbs from the thumbs/ folder
 
+The upload/ folder allows you to upload new files via the web without using FTP. Password-protect this folder, or rename it, for enhanced security so someone isn't uploading into your gallery. It currently uploads into the images root and does not access folders.
+
 Shoutouts:
 Shoutouts to all the open source projects used here: PHP, jQuery, fancybox
