@@ -20,6 +20,20 @@ div.gallery_image {
 	text-align:center; 
 }
 
+h1
+{
+	font-size:1.6em;
+	padding:10px;
+	margin:10px 20px;
+	background-color:#EEE;
+}
+
+form
+{
+	padding:10px;
+	margin:10px 20px;
+}
+
 div#folderHeader
 {
 	font-size:1.6em;
