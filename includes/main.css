@@ -5,10 +5,10 @@ body {
 }
 div.gallery_folder { 
 	font-size:1.4em;
-	width:165px; 
-	height:155px; 
+	width:65px; 
+	height:55px; 
 	float:left; 
-	margin: 0 10px 30px 10px; 
+	margin: 0 10px 30px 15px; 
 	text-align:center; 
 }
 div.gallery_image { 
@@ -16,10 +16,12 @@ div.gallery_image {
 	width:165px; 
 	height:155px; 
 	float:left; 
-	margin: 0 10px 30px 10px; 
+	margin: 0 10px 30px 15px; 
 	text-align:center; 
 }
-
+a img {
+	text-decoration:none;
+}
 h1
 {
 	font-size:1.6em;
@@ -32,6 +34,14 @@ form
 {
 	padding:10px;
 	margin:10px 20px;
+}
+
+div#newFolder
+{
+	font-size:1.3em;
+	padding:10px;
+	margin:10px 20px;
+	background-color:#EEE;
 }
 
 div#folderHeader
@@ -76,4 +86,14 @@ div#footer
 	padding:10px;
 	margin:10px 20px;
 	font-size:1.0em;
+}
+div#divSWFUploadUI
+{
+	padding:10px;
+	margin:10px 20px;
+	font-size:1.4em;
+}
+#errorText
+{
+	color:red;
 }

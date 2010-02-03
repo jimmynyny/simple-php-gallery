@@ -7,7 +7,7 @@ if($_GET["folder"] && (substr($_GET["folder"],0,1) == "." || preg_match("/.+\.\.
 }
 $imagefolder=$_SERVER["DOCUMENT_ROOT"]."/images/".$_GET["folder"];
 $thumbsfolder=$_SERVER["DOCUMENT_ROOT"]."/thumbs/".$_GET["folder"];
-$pics=directory($imagefolder,"jpg,JPG,JPEG,jpeg,png,PNG");
+$pics=directory($imagefolder,"jpg,JPG,JPEG,jpeg,png,PNG,gif,GIF");
 $pics=ditchtn($pics,"tn_");
 if (!file_exists($thumbsfolder))
 { 

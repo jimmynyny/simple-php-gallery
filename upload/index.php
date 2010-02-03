@@ -1,7 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?
+	if($_GET["folder"] && (substr($_GET["folder"],0,1) == "." || preg_match("/.+\.\..+/", $_GET["folder"])))
+	{
+		echo "no no no.";
+		return;
+	}
+	
+	function handleError() {
+	    trigger_error('ERROR CREATING FOLDER');
+	}
+	
+	if($_GET["cmd"] && $_GET["cmd"] == "add")
+	{
+		if($_GET["folder"])
+		{
+			$dirToAdd = $_SERVER["DOCUMENT_ROOT"]."/images/".$_GET["folder"];
+			$rs = @mkdir( $dirToAdd, '0777' );
+			@handleError();
+			if( $rs )
+			{
+				echo "%%SUCCESS%% " . $dirToAdd;
+			}
+			else
+			{
+				echo "Problem creating " . $_GET["folder"];
+			}
+		}
+		else
+		{
+			echo "Sorry - Folder name cannot be blank.";
+		}
+		return;
+	}
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-<title>SWFUpload Demos - Overlay Demo</title>
+<title>Simple PHP Gallery - Upload</title>
 <link href="css/default.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 	.swfupload {
@@ -20,6 +53,7 @@
 <script type="text/javascript" src="includes/plugins/swfupload.queue.js"></script>
 <script type="text/javascript" src="includes/js/fileprogress.js"></script>
 <script type="text/javascript" src="includes/js/handlers.js"></script>
+<script type="text/javascript" src="../includes/js/folders.js"></script>
 <script type="text/javascript">
 var swfu;
 
@@ -65,13 +99,77 @@ SWFUpload.onload = function () {
 
 	swfu = new SWFUpload(settings);
 }
-
+function showAddFolder()
+{
+	$("#newFolder").empty();
+	$("#newFolder").css('opacity',0.0);
+	$("#newFolder").append("Folder Name:&nbsp;<input type=\"text\" id=\"newFolderName\">&nbsp;<input type=\"submit\" value=\"Add\" onclick=\"addNewFolder($('#newFolderName').val());return false;\"><input type=\"submit\" value=\"Cancel\" onclick=\"resetAddFolder();return false;\"><span style=\"display:block;clear:both;\" id=\"errorText\"></span>")
+	$("#newFolder").animate({opacity:1.0},500);
+	$("#errorText").css('opacity',0.0);
+}
+function resetAddFolder()
+{
+	$("#newFolder").animate({opacity:0.0},200,function(){
+		$("#newFolder").empty();
+		$("#newFolder").append("<a href=\"javascript:void(0);\" onClick=\"javascript:showAddFolder();\">add new folder &raquo;</a>");
+		$("#newFolder").animate({opacity:1.0},200);
+	});
+}
+function addNewFolder(folderName)
+{
+  	$.ajax({
+	    type: "GET",
+	    url: "index.php?cmd=add&folder=" + escape($.url.param("folder") + folderName),
+	    dataType: "text",
+	    success: function (text){
+			if(text.indexOf("%%SUCCESS%%") != -1)
+			{
+				$("#output").empty();
+				loadAllData();
+				$("#newFolder").animate({opacity:0.0},200,function(){
+					$("#newFolder").empty();
+					$("#newFolder").append("<a href=\"javascript:void(0);\" onClick=\"javascript:showAddFolder();\">add new folder &raquo;</a>");
+					$("#newFolder").animate({opacity:1.0},200);
+				});
+			}
+			else
+			{
+				$("#errorText").animate({opacity:0.0},100);
+				$("#errorText").empty();
+				$("#errorText").append(text);
+				$("#errorText").animate({opacity:1.0},500);
+			}
+		}
+	  });
+}
 </script>
 </head>
 <body>
 <div id="content">
 
 	<h1>Simple Gallery - Upload</h1>
+	<?
+	if($_GET["folder"] != "")
+	{
+		echo "<div id=\"folderHeader\">current folder: <span id=\"folderName\">".$_GET["folder"]."</span></div>";
+	}
+	else
+	{
+		echo "<div id=\"folderHeader\">current folder: <span id=\"folderName\">root folder</span></div>";
+	}
+	?>
+	<?
+	if($_GET["folder"] != "" && dirname($_GET["folder"]) != ".")
+	{
+		echo "<div class='gallery_folder'><a href='index.php?folder=" . dirname($_GET["folder"]) . "/'><img src='/includes/folder.jpg'>^up one folder</a></div>";
+	}
+	else if($_GET["folder"] != "")
+	{
+		echo "<div class='gallery_folder'><a href='index.php'><img src='/includes/folder.jpg'>^up one folder</a></div>";
+	}
+	?>
+	<div id="output"></div>
+	<div id="newFolder"><a href="javascript:void(0);" onClick="javascript:showAddFolder();">add new folder &raquo;</a></div>
 	<form id="form1" action="index.php" method="post" enctype="multipart/form-data">
 
 		<div id="divSWFUploadUI">
