@@ -13,6 +13,8 @@
 	{
 		if($_GET["folder"])
 		{
+echo "%%SUCCESS%%";
+return;
 			$dirToAdd = $_SERVER["DOCUMENT_ROOT"]."/images/".$_GET["folder"];
 			$rs = @mkdir( $dirToAdd, '0777' );
 			@handleError();
